@@ -3,3 +3,7 @@ graphql:
     schema-location-pattern: "**/*.graphql"
   servlet:
     max-query-depth: 15
+  playground:
+    enabled: true
+voyager:
+  enabled: true
