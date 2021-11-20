@@ -25,29 +25,10 @@ public class QueryResolver implements GraphQLQueryResolver {
 
     public BankAccount bankAccount(UUID id) {
         log.info("Retrieving id: %d {}", id);
-        var l = new ArrayList<String>();
-        l.add("hello");
-        l.add("hello");
-        var clientA = Client.builder()
-                .id(UUID.randomUUID())
-                .lastname("lastnameA")
-                .firstname("firstnameA")
-                .middlenames(l)
-                .build();
-
-        var clientB = Client.builder()
-                .id(UUID.randomUUID())
-                .lastname("lastnameB")
-                .firstname("firstnameB")
-                .middlenames(l)
-                .build();
-        clientA.setClient(clientB);
-        clientB.setClient(clientA);
 
         return BankAccount.builder()
                 .id(UUID.randomUUID())
                 .currency(Currency.USD)
-                .client(clientA)
                 .build();
     }
 }
