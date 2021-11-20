@@ -1,3 +1,5 @@
 graphql:
   tools:
     schema-location-pattern: "**/*.graphql"
+  servlet:
+    max-query-depth: 5
