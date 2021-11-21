@@ -16,11 +16,19 @@ import graphql.kickstart.tools.GraphQLResolver;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Component
 public class FieldResolver implements GraphQLResolver<BankAccount> {
+    private final ExecutorService executorService = Executors.newFixedThreadPool(
+            Runtime.getRuntime().availableProcessors()
+    );
 
-    public DataFetcherResult<Client> client(BankAccount bankAccount) {
+
+    public CompletableFuture<Client> client(BankAccount bankAccount) {
         var l = new ArrayList<String>();
         l.add("hello");
         l.add("hello");
@@ -30,13 +38,18 @@ public class FieldResolver implements GraphQLResolver<BankAccount> {
                 .middlenames(l)
                 .lastname("name")
                 .build();
-        if ( 3 > 0) {
-            throw new RuntimeException("hello, I'm run time exception");
-        }
 
-        return DataFetcherResult.<Client>newResult()
-                .data(client)
-                .error(new GenericGraphQLError("hello error")).build();
+        return CompletableFuture.supplyAsync(() ->
+                Client.builder()
+                        .id(UUID.randomUUID())
+                        .firstname("firstname")
+                        .lastname("lastname")
+                        .build()
+        );
+
+//        return DataFetcherResult.<Client>newResult()
+//                .data(client)
+//                .error(new GenericGraphQLError("hello error")).build();
 
     }
 }
