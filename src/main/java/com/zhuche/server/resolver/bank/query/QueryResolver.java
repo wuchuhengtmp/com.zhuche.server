@@ -6,7 +6,7 @@
  * Listen  MIT
  */
 
-package com.zhuche.server.resolver.bank;
+package com.zhuche.server.resolver.bank.query;
 
 import com.zhuche.server.resolver.bank.dto.BankAccount;
 import com.zhuche.server.resolver.bank.dto.Currency;

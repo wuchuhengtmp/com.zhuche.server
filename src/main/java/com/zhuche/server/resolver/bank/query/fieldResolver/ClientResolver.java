@@ -6,7 +6,7 @@
  * Listen  MIT
  */
 
-package com.zhuche.server.resolver.bank;
+package com.zhuche.server.resolver.bank.query.fieldResolver;
 
 import com.zhuche.server.resolver.bank.dto.BankAccount;
 import com.zhuche.server.resolver.bank.dto.Client;
@@ -22,7 +22,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @Component
-public class FieldResolver implements GraphQLResolver<BankAccount> {
+public class ClientResolver implements GraphQLResolver<BankAccount> {
     private final ExecutorService executorService = Executors.newFixedThreadPool(
             Runtime.getRuntime().availableProcessors()
     );
