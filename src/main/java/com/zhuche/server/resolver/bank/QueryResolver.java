@@ -9,14 +9,11 @@
 package com.zhuche.server.resolver.bank;
 
 import com.zhuche.server.resolver.bank.dto.BankAccount;
-import com.zhuche.server.resolver.bank.dto.Client;
 import com.zhuche.server.resolver.bank.dto.Currency;
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @Slf4j
