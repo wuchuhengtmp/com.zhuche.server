@@ -50,6 +50,11 @@
             <version>${graphql.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.graphql-java</groupId>
+            <artifactId>graphql-java-extended-scalars</artifactId>
+            <version>16.0.1</version>
+        </dependency>
         <!--graphql, end -->
         <dependency>
             <groupId>org.projectlombok</groupId>

@@ -13,4 +13,5 @@ import lombok.Data;
 @Data
 public class CreateBankAccountInput {
     String firstname;
+    int age;
 }
