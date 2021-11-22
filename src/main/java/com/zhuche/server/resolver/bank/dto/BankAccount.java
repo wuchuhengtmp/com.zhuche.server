@@ -11,6 +11,8 @@ package com.zhuche.server.resolver.bank.dto;
 import lombok.Builder;
 import lombok.Value;
 
+import java.time.LocalDate;
+import java.time.ZonedDateTime;
 import java.util.UUID;
 
 @Value
@@ -19,4 +21,6 @@ public class BankAccount {
     UUID id;
     Currency currency;
     Client client;
+    ZonedDateTime createdAt;
+    LocalDate createdOn;
 }
