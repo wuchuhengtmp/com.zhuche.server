@@ -8,15 +8,13 @@
 
 package com.zhuche.server.errors;
 
+import com.zhuche.server.core.configuration.ErrorCodeConfiguration;
 import graphql.ErrorClassification;
 import graphql.GraphQLError;
 import graphql.language.SourceLocation;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import lombok.extern.slf4j.XSlf4j;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.PropertySource;
 
 import java.util.HashMap;
 import java.util.List;
@@ -32,10 +30,6 @@ public class BaseException extends RuntimeException implements GraphQLError {
     List<Object> path = null;
     ErrorClassification errorType = null;
 
-    public BaseException(int errorCode) {
-        this.errorCode = errorCode;
-    }
-
     @Override
     public String getMessage() {
         return this.errorMessage;
@@ -44,10 +38,8 @@ public class BaseException extends RuntimeException implements GraphQLError {
     @Override
     public Map<String, Object> getExtensions() {
         Map<String, Object> errors = new HashMap<String, Object>();
-        errors.put("errorCode", this.errorCode);
+        errors.put("errorCode", this.getErrorCode());
 
         return  errors;
     }
-
-
 }

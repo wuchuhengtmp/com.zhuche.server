@@ -8,9 +8,14 @@
 
 package com.zhuche.server.errors;
 
-public class NotFoundException extends BaseException {
 
-    public NotFoundException(int errorCode) {
-        super(errorCode);
-    }
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.Map;
+
+@Setter
+@Getter
+public class NotFoundException extends BaseException {
+    Integer errorCode = 10000;
 }

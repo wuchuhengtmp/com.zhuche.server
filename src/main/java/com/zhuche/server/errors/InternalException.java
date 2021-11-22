@@ -14,8 +14,5 @@ import lombok.Setter;
 @Setter
 @Getter
 public class InternalException extends BaseException {
-
-    public InternalException(int errorCode) {
-        super(errorCode);
-    }
+    Integer errorCode = 40000;
 }
