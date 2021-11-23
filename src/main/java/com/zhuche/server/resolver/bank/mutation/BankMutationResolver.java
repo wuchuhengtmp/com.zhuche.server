@@ -15,7 +15,9 @@ import graphql.kickstart.tools.GraphQLMutationResolver;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.Valid;
 import java.time.Clock;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
@@ -24,10 +26,11 @@ import java.util.UUID;
 @Component
 @Slf4j
 @RequiredArgsConstructor
+@Validated
 public class BankMutationResolver implements GraphQLMutationResolver {
     private final Clock clock;
 
-    public BankAccount createBankAccount(CreateBankAccountInput input) {
+    public BankAccount createBankAccount(@Valid CreateBankAccountInput input) {
         log.info("Creating bank account for {}", input);
 
         return BankAccount.builder()

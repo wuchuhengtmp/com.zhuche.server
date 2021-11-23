@@ -11,8 +11,8 @@ package com.zhuche.server.errors;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
-@Getter
-public class InternalException extends BaseException {
+public class InternalException extends BaseExceptionImpl implements BaseException {
+    @Setter
+    @Getter
     Integer errorCode = 40000;
 }

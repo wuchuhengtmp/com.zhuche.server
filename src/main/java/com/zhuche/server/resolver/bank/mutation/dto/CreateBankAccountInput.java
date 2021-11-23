@@ -10,8 +10,11 @@ package com.zhuche.server.resolver.bank.mutation.dto;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
+
 @Data
 public class CreateBankAccountInput {
+    @NotBlank
     String firstname;
     int age;
 }

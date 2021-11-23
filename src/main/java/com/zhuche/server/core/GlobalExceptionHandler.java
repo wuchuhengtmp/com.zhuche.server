@@ -10,15 +10,14 @@ package com.zhuche.server.core;
 
 import com.zhuche.server.core.configuration.ErrorCodeConfiguration;
 import com.zhuche.server.errors.BaseException;
+import com.zhuche.server.errors.BaseExceptionImpl;
 import com.zhuche.server.errors.InternalException;
-import com.zhuche.server.errors.NotFoundException;
-import graphql.GraphQLError;
-import graphql.GraphQLException;
-import graphql.GraphqlErrorException;
-import graphql.kickstart.spring.error.ThrowableGraphQLError;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.zhuche.server.errors.ValidatedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import javax.validation.ConstraintViolationException;
+import java.util.Map;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -30,9 +29,8 @@ public class GlobalExceptionHandler {
         this.errorCodeConfiguration = errorCodeConfiguration;
     }
 
-    @ExceptionHandler({BaseException.class})
+    @ExceptionHandler({BaseExceptionImpl.class})
     public BaseException handle(BaseException e) {
-        var errorCode = e.getErrorCode();
         var message = this.errorCodeConfiguration.getMessage(e.getErrorCode());
         if (message == null ) {
             e.setErrorCode(this.internalErrorCode);
@@ -42,6 +40,15 @@ public class GlobalExceptionHandler {
         e.setErrorMessage(message);
 
         return e;
+    }
+
+    @ExceptionHandler({ConstraintViolationException.class})
+    public  BaseException handle(ConstraintViolationException e) {
+        var err = new ValidatedException();
+        err.setErrorMessage(e.getMessage());
+        Map<String, Object> extensions = err.getExtensions();
+
+        return err;
     }
     
     @ExceptionHandler(RuntimeException.class)
