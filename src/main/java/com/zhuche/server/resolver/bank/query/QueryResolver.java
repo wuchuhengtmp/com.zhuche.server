@@ -32,7 +32,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-class BankAccountQueryResolver implements GraphQLQueryResolver {
+class QueryResolver implements GraphQLQueryResolver {
 
     private final BankAccountRepository bankAccountRepository;
     private final CursorUtil cursorUtil;
@@ -40,7 +40,6 @@ class BankAccountQueryResolver implements GraphQLQueryResolver {
 
     public BankAccount bankAccount(UUID id, DataFetchingEnvironment environment) {
         log.info("Retrieving bank account id: {}", id);
-
         CustomGraphQLContext context = environment.getContext();
 
         log.info("User ID: {}", context.getUserId());
