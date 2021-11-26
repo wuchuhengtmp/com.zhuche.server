@@ -4,4 +4,5 @@ type BankAccount {
     client: Client!
     createdOn: Date
     createdAt: DateTime
+    balance: Float
 }

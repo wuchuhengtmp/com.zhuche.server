@@ -28,7 +28,7 @@ public class LoggingListener implements GraphQLServletListener {
     @Override
     public RequestCallback onRequest(HttpServletRequest request, HttpServletResponse response) {
         var starTime = Instant.now();
-        log.info("Received graphql request");
+//        log.info("Received graphql request");
         return new RequestCallback() {
             @Override
             public void onSuccess(HttpServletRequest request, HttpServletResponse response) {
